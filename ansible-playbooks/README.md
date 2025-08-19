@@ -1,83 +1,91 @@
 # ansible-playbooks
 
-Sample Ansible playbooks for using the Redfish API on Lenovo servers
+Ansible is an open-source automation tool that simplifies IT tasks like configuration management, application deployment, and orchestration. It's designed to be simple, powerful, and agentless, meaning it doesn't require any software to be installed on the machines it manages. Instead, it connects over standard protocols like SSH or WinRM.
 
-Description
-----------
+## The core components of Ansible are:
 
-This folder includes a set of sample Ansible playbooks that utilize the Redfish API to manage Lenovo ThinkSystem servers.  The playbooks use redfish_facts/redfish_command/redfish_config modules which are in Ansible or community.general collection since Ansible version 2.10
+**Control Node:** The machine where Ansible is installed.
 
-For more information on the Redfish API, visit <http://redfish.dmtf.org/>
+**Managed Nodes:** The servers or devices that Ansible manages.
 
-For more information on the Ansible, visit <https://docs.ansible.com/ansible/latest/>
+**Inventory:** A file that lists the managed nodes.
 
-For more information on the community.general collection, visit <https://github.com/ansible-collections/community.general>
+**Playbooks:** YAML files that define the automation jobs.
 
-Installing
-----------
 
-* To install Ansible:
-    
-    `pip install ansible`
+_This folder includes a set of sample Ansible playbooks that utilize the Redfish API to manage Lenovo ThinkSystem servers. These playbooks use the redfish_facts, redfish_command, and redfish_config modules, which are available in standard Ansible or the community.general collection since Ansible version 2.10._
 
-    Without version specified, newest version will be installed. If you want specific version, specify it as below:
 
-    `pip install ansible==2.8`
+**Redfish API:** http://redfish.dmtf.org/
 
-* To install community.general collection (Needed since Ansible version 2.10):
+**Ansible:** https://docs.ansible.com/ansible/latest/
 
-    `ansible-galaxy collection install community.general`
+`community.general` **collection:** https://github.com/ansible-collections/community.general
 
-Requirements
-----------
+### Install Ansible:
 
-* Ansible and community.general collection need to be installed
+```bash
+pip install ansible
+```
 
-Usage
-----------
-A set of playbook examples is provided under the ansible-playbooks directory of this project.
+To install a specific version, use:
 
-* Common variables
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Variable "baseuri" represent BMC IP address, and variable "username" and "password" are used for BMC authentification. They should be configured in your inventory file before starting use playbooks. The results of get action playbooks which start with "get_" would be saved to files which's format is defined in create_output_file.yml. Please set variable "rootdir" to a local directory where you want to place results.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```bash
+pip install ansible==2.8
+```
 
-* Using the ansible playbook to get bios attributes
+Install the `community.general` collection:
+(Needed for Ansible version 2.10 and newer)
 
-This example save the bios attributes of your myhosts to files (Default location is "output" named folder in current directory)
+```bash
+ansible-galaxy collection install community.general
+```
 
-    cd ansible-playbooks
-    ansible-playbook get_bios_attributes.yml
+### Usage
+A set of playbook examples is provided in this directory.
 
-* Using the ansible playbook to restart server
+### Common Variables
+The following variables should be configured in your inventory file before running any playbooks:
 
-This example reaceful restart servers defined in myhosts inventory file
+**baseuri:** The BMC IP address.
 
-    cd ansible-playbooks
-    ansible-playbook power_graceful_restart.yml
+**username and password:** Credentials for BMC authentication.
+
+**rootdir:** A local directory where you want to save the results of get action playbooks.
+
+Examples
+Get BIOS Attributes
+This example saves the BIOS attributes of your servers (defined in your inventory file) to files in the output directory by default.
+
+```bash
+cd ansible-playbooks
+ansible-playbook get_bios_attributes.yml
+```
+
+Restart a Server
+This example gracefully restarts the servers defined in your inventory file.
+
+```bash
+cd ansible-playbooks
+ansible-playbook power_graceful_restart.yml
+```
 
 Contributing
-----------
+Fork the repository.
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+Create your feature branch: git checkout -b my-new-feature
+
+Commit your changes: git commit -am 'Add some feature'
+
+Push to the branch: git push origin my-new-feature
+
+Submit a pull request.
 
 Copyright and License
----------------------
-
 Copyright 2021 Lenovo Corporation
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may
-not use this file except in compliance with the License. You may obtain
-a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at:
 
 http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-License for the specific language governing permissions and limitations
-under the License.
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
