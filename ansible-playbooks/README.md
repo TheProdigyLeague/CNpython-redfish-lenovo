@@ -1,3 +1,6 @@
+![--These are sample Ansible playbooks that use the Redfish API to manage Lenovo ThinkSystem servers  The playbooks use the redfish_facts, redfish_command, and redfish_config modules, which have been part of Ansible or the community](https://github.com/user-attachments/assets/257248b4-6905-430b-bdcf-0ea8cba271e6)
+
+
 # ansible-playbooks
 
 Ansible is an open-source automation tool that simplifies IT tasks like configuration management, application deployment, and orchestration. It's designed to be simple, powerful, and agentless, meaning it doesn't require any software to be installed on the machines it manages. Instead, it connects over standard protocols like SSH or WinRM.
